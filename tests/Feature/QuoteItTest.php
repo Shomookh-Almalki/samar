@@ -594,3 +594,10 @@ it('ignores an unknown anchor when liking', function () {
         ->post("/quotes/{$quote->id}/like", ['anchor' => 'something-else'])
         ->assertRedirectContains("#quote-{$quote->id}");
 });
+
+it('builds https links when the site is opened through an https proxy or tunnel', function () {
+    $this->withHeader('X-Forwarded-Proto', 'https')
+        ->get('/')
+        ->assertSee('href="https://localhost', false)
+        ->assertDontSee('href="http://localhost', false);
+});

@@ -1,0 +1,34 @@
+# Render Blueprint: creates the web service (from the Dockerfile) and a free Postgres database.
+databases:
+  - name: samar-db
+    plan: free
+    databaseName: samar
+    user: samar
+
+services:
+  - type: web
+    name: samar
+    runtime: docker
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: Samar
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false          # you paste it once (see README)
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: samar-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
