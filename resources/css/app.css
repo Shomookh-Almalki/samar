@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Fonts are bundled with the app (no internet needed): Cairo for the interface,
+   Aref Ruqaa (Ruq'ah handwriting) for the verses, Reem Kufi for the logo. */
+@import '@fontsource-variable/cairo';
+@import '@fontsource-variable/reem-kufi';
+@import '@fontsource/aref-ruqaa/arabic-400.css';
+@import '@fontsource/aref-ruqaa/arabic-700.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* Samar theme: lagoon teal, warm gold, coral and cream */
+@theme {
+    --font-sans: 'Cairo Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-verse: 'Aref Ruqaa', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    --font-brand: 'Reem Kufi Variable', 'Cairo Variable', sans-serif;
+
+    --color-cream: #fff9ee;
+    --color-sand: #f3e3c3;
+    --color-lagoon-deep: #0b4f54;
+    --color-lagoon: #17868b;
+    --color-lagoon-soft: #d9f2ec;
+    --color-gold: #d9a441;
+    --color-gold-deep: #8f6212;
+    --color-coral: #e5735f;
+    --color-ink: #1f3036;
+}
+
+@layer base {
+    body {
+        background:
+            radial-gradient(900px 520px at 8% -8%, #d9f2ec 0%, transparent 62%),
+            radial-gradient(800px 520px at 100% 0%, #fde7c4 0%, transparent 58%),
+            radial-gradient(900px 600px at 50% 110%, #fbd9cf 0%, transparent 60%),
+            var(--color-cream);
+        background-attachment: fixed;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-br from-lagoon to-lagoon-deep px-6 py-2.5 font-semibold text-white shadow-md shadow-lagoon/30 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-lagoon/30;
+    }
+
+    .btn-gold {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-br from-gold to-[#f0c36a] px-6 py-2.5 font-semibold text-lagoon-deep shadow-md shadow-gold/30 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-gold/40;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 font-semibold text-lagoon-deep ring-1 ring-lagoon/30 transition hover:bg-lagoon-soft focus:outline-none focus-visible:ring-4 focus-visible:ring-lagoon/30;
+    }
+
+    .label {
+        @apply mb-1 block text-sm font-semibold text-lagoon-deep;
+    }
+
+    .input {
+        @apply w-full rounded-2xl border border-sand bg-white px-4 py-2.5 text-ink placeholder-gray-400 shadow-sm transition focus:border-lagoon focus:outline-none focus:ring-4 focus:ring-lagoon/20;
+    }
+}
+
+/* Eight-pointed star pattern used on the hero and the sign up / log in panel */
+.pattern-stars {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.16' stroke-width='1.2'%3E%3Crect x='14' y='14' width='44' height='44'/%3E%3Crect x='14' y='14' width='44' height='44' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='7'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-bg {
+    background:
+        radial-gradient(circle at 88% 18%, rgb(217 164 65 / 0.5), transparent 42%),
+        radial-gradient(circle at 8% 90%, rgb(229 115 95 / 0.35), transparent 40%),
+        linear-gradient(135deg, #0b4f54 0%, #17868b 55%, #3fb5a3 100%);
+}
